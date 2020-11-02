@@ -5671,7 +5671,7 @@ function main() {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    console.log("auto release");
+                    core.info("start auto releasing...");
                     _a = github.context.repo, owner = _a.owner, repo = _a.repo;
                     octokit = github.getOctokit(token);
                     return [4 /*yield*/, octokit.git.getRef({
@@ -5691,6 +5691,7 @@ function main() {
                         })];
                 case 3:
                     ref = _b.sent();
+                    core.info(head + " already exists, skiping auto release.");
                     return [3 /*break*/, 8];
                 case 4:
                     err_1 = _b.sent();
@@ -5703,6 +5704,7 @@ function main() {
                         })];
                 case 5:
                     _b.sent();
+                    core.info("start creating pull request");
                     return [4 /*yield*/, octokit.pulls.create({
                             owner: owner,
                             repo: repo,
@@ -5713,7 +5715,7 @@ function main() {
                         })];
                 case 6:
                     pullrequest = _b.sent();
-                    console.log(pullrequest);
+                    core.info("pull request is created successfully. pull request number " + pullrequest.data.number);
                     _b.label = 7;
                 case 7: return [3 /*break*/, 8];
                 case 8: return [2 /*return*/];

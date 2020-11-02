@@ -9,7 +9,7 @@ const title = core.getInput("title");
 const body = core.getInput("body");
 
 async function main() {
-  console.log("auto release");
+  core.info("start auto releasing...");
 
   const { owner, repo } = github.context.repo;
 
@@ -27,6 +27,7 @@ async function main() {
       repo,
       ref: `heads/${head}`,
     });
+    core.info(`${head} already exists, skiping auto release.`);
   } catch (err) {
     if (err.status === 404) {
       await octokit.git.createRef({
@@ -36,6 +37,7 @@ async function main() {
         sha: developRef.data.object.sha,
       });
 
+      core.info("start creating pull request");
       const pullrequest = await octokit.pulls.create({
         owner,
         repo,
@@ -44,7 +46,9 @@ async function main() {
         title,
         body,
       });
-      console.log(pullrequest);
+      core.info(
+        `pull request is created successfully. pull request number ${pullrequest.data.number}`
+      );
     }
   }
 }
