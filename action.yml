@@ -1,31 +1,31 @@
-name: 'auto release develop truck'
-description: 'branch develop and create a pull request to master'
-author: 'russel yang'
+name: "auto release develop truck"
+description: "branch develop and create a pull request to master"
+author: "russel yang"
 runs:
-  using: 'node12'
-  main: 'src/main.js'
+  using: "node12"
+  main: "src/main.js"
 inputs:
   base:
-    description: 'pull request base'
-    default: 'master'
+    description: "pull request base"
+    default: "master"
     required: true
   head:
-    description: 'pull request head branch'
-    default: 'release'
+    description: "pull request head branch"
+    default: "release"
     required: true
   develop_branch:
-    description: 'develope feature branch name'
-    default: 'develop'
+    description: "develope feature branch name"
+    default: "develop"
     required: true
   token:
-    description: 'github personal token for the magic happen'
+    description: "github personal token for the magic happen"
     required: true
   title:
-    description: 'pull request title'
+    description: "pull request title"
     required: true
   body:
-    description: 'pull request body'
+    description: "pull request body"
     required: false
 branding:
-  icon: 'arrow-up'  
-  color: 'green
+  icon: "arrow-up"
+  color: "green"
