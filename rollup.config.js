@@ -1,6 +1,7 @@
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
-import pkg from "./package.json";
+import resolve from '@rollup/plugin-node-resolve';
+
 export default [
   {
     input: "src/main.ts",
@@ -11,6 +12,7 @@ export default [
       sourcemap: true,
     },
     plugins: [
+      resolve(),
       typescript({
         declaration: true,
         declarationDir: "./dist",
