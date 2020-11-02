@@ -3,7 +3,7 @@ description: "branch develop and create a pull request to master"
 author: "russel yang"
 runs:
   using: "node12"
-  main: "src/main.js"
+  main: "dist/cjs/main.js"
 inputs:
   base:
     description: "pull request base"

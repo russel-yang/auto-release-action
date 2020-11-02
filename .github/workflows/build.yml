@@ -1,0 +1,23 @@
+name: pull request build
+
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+jobs:
+  build:
+    name: build action
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+      - run: npm ci
+      - run: npm run build
